@@ -1,25 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { ReactNode } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+import Layout from "./components/Layout";
+import HomePage from "./pages/HomePage";
+
+interface ILayoutRoute {
+  exact?: boolean;
+  path: string;
+  component: ReactNode;
+  title?: string;
+}
 
 function App() {
+  const LayoutRoute = ({ exact, path, component, title }: ILayoutRoute) => {
+    return (
+      <Route
+        exact={exact}
+        path={path}
+        render={() => {
+          return <Layout title={title}>{component}</Layout>;
+        }}
+      ></Route>
+    );
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <LayoutRoute title="Home" exact path="/" component={<HomePage />} />
+      </Switch>
+    </Router>
   );
 }
 
