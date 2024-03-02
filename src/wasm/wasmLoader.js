@@ -1,13 +1,12 @@
 import loader from "@assemblyscript/loader";
 
-let wasm; // Declare wasm variable outside the loadWASM function
+let wasm;
 
 export const loadWASM = () => {
   return loader
     .instantiate(fetch("release.wasm"))
     .then((result) => {
-      wasm = result.exports; // Assign exports to the global wasm variable
-      console.log(wasm);
+      wasm = result.exports;
       return true;
     })
     .catch((error) => {
@@ -26,4 +25,10 @@ export const concatString = (aStr, bStr) => {
   let cPtr = concat(aPtr, bPtr);
   let cStr = __getString(cPtr);
   return cStr;
+};
+
+export const calculateAverageFunction = (numbers) => {
+  const { calculateAverage, __newArray, INT32ARRAY_ID } = wasm;
+  const arrPtr = __newArray(INT32ARRAY_ID, numbers);
+  return calculateAverage(arrPtr);
 };
