@@ -35,6 +35,6 @@ These steps ensure the proper incorporation and deployment of your Assembly Scri
 - [TypeScript](https://www.typescriptlang.org/)
 - [ESLint](https://eslint.org/)
 - [Material-UI](https://material-ui.com/)
-- [react-apexcharts](https://apexcharts.com/docs/react-charts/)
+- [recharts](https://www.npmjs.com/package/recharts)
 - [assemblyscript](https://www.npmjs.com/package/assemblyscript)
 - [Other Technologies]
